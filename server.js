@@ -1,23 +1,47 @@
-const express = require('express');
-const mongoose = require('mongoose');
+// server.js
+/*const express = require('express');
 const bodyParser = require('body-parser');
-const productRoutes = require('./routes/productRoutes');
+//const expensesRouter = require('./routes/route');
+//const expenseRoutes = require('./controllers/expenseController'); 
+//const expenseRoutes = require('./routes/expenseRoutes');
+const expenseRoutes = require('./controllers/transactionController'); 
+
 
 const app = express();
+const port = 5000;
 
-// Middleware
 app.use(bodyParser.json());
+//app.use('/api', expensesRouter);
 
+// Middleware to parse JSON bodies
 // Routes
-app.use('/api', productRoutes);
+//app.use('/api', expenseRoutes);
+app.use('/api', expenseRoutes);
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}/`);
+  });
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/Product', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.error('MongoDB connection error:', err));
+// Root endpoint for testing
+//app.get('/', (req, res) => {
+  //res.send('Hello, welcome to the Expenses API');
+//});
 
 // Start the server
-const PORT = process.env.PORT || 3000;
+//app.listen(6000, () => {
+  //console.log(`Server is running on http://localhost:6000`);
+//});
+
+module.exports = app;*/
+// app.js
+const express = require('express');
+const bodyParser = require('body-parser');
+const expenseRoutes = require('./routes/router');
+
+const app = express();
+app.use(bodyParser.json());
+app.use('/api', expenseRoutes);
+
+const PORT =5000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
